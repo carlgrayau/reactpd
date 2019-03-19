@@ -1,0 +1,5 @@
+.navigation-main-div {
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+}
