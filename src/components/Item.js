@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+    Link
+  } from 'react-router-dom';
 
 class Item extends Component {
     constructor(props) {
@@ -11,7 +14,10 @@ class Item extends Component {
   render() {
     return (
       <div>
-        Episode {this.props.episode.audio}
+          <div>
+        Episode {this.props.episode.title_original}
+        </div>
+        <div><Link to={`/topic/${this.props.match.params.series}/${this.props.episode.id}`}>Click Link:</Link></div>
       </div>
     );
   }

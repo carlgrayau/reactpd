@@ -29,7 +29,7 @@ class PodcastList extends Component {
     } else {
       return (<div>
 
-        { episodes.map((episode, index) => ( <Item key={index} episode={episode} /> ))}
+        { episodes.map((episode, index) => ( <Item {...this.props} key={index} episode={episode} /> ))}
       </div>
       )
     }

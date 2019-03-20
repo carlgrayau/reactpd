@@ -16,7 +16,7 @@ class App extends Component {
         <Router>
             <Header></Header>
             <div className="app-layout">
-            <Route path="/topic/:series" component={PodcastList} />
+            <Route path="/topic/:series" component={props => <PodcastList {...props} /> } />
             <Route path="/topic/:series/:id" component={PodcastPlayer} />
             </div>
         </Router>
