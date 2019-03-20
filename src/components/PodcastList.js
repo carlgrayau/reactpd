@@ -22,6 +22,12 @@ class PodcastList extends Component {
         
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.series !== prevProps.match.params.series) {
+      this.componentDidMount()
+    }
+  }
+
   render() {
     const { episodes } = this.state;
     if (episodes[0] === undefined) {
