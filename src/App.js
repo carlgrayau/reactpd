@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import Podcast from './components/Podcast';
+import PodcastList from './components/PodcastList';
+import PodcastPlayer from './components/PodcastPlayer';
+import './App.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -13,7 +15,10 @@ class App extends Component {
       <div>
         <Router>
             <Header></Header>
-            <Route path="/topic/:series" component={Podcast} />
+            <div className="app-layout">
+            <Route path="/topic/:series" component={PodcastList} />
+            <Route path="/topic/:series/:id" component={PodcastPlayer} />
+            </div>
         </Router>
       </div>
     );
