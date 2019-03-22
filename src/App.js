@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import PodcastList from './components/PodcastList';
 import PodcastPlayer from './components/PodcastPlayer';
+import SearchBar from './components/SearchBar';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -14,6 +15,7 @@ class App extends Component {
     return (
       <div>
         <Router>
+          <SearchBar></SearchBar>
             <Header></Header>
             <div className="app-layout">
             <Route path="/topic/:series" component={props => <PodcastList {...props} /> } />
