@@ -11,11 +11,28 @@ import {
 } from 'react-router-dom';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        filteredarray: ""
+    }
+}
+// componentDidUpdate = () => {
+//   console.log(this.state.filteredarray)
+// }  
+
+  getData = (val) => {
+    
+    this.setState({filteredarray: val});
+    console.log(this.state.filteredarray);
+    
+}
+
   render() {
     return (
       <div>
         <Router>
-          <SearchBar></SearchBar>
+          <SearchBar sendData={this.getData}></SearchBar>
             <Header></Header>
             <div className="app-layout">
             <Route path="/topic/:series" component={props => <PodcastList {...props} /> } />

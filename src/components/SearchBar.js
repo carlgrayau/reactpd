@@ -8,16 +8,24 @@ class SearchBar extends Component {
         }
     }
 
+   
+    demoMethod = () => {
+        this.props.sendData(this.state.filtered);
+      }
+ 
+
     handleChange = (e)  =>  {
         e.preventDefault();
         this.setState({filtered: e.target.value});
-        console.log(this.state.filtered);
+        // this.props.sendData(this.state.filtered);
+        
     }
 
   render() {
     return (
       <div>
         <input type="text" className="input" onChange={this.handleChange} placeholder="Search..."></input>
+        <button onClick={()=> this.props.sendData(this.state.filtered)}>Search</button>
       </div>
     );
   }
