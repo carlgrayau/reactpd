@@ -22,10 +22,7 @@ class App extends Component {
 // }  
 
   getData = (val) => {
-    
     this.setState({filteredarray: val});
-    console.log(this.state.filteredarray);
-    
 }
 
   render() {
@@ -33,6 +30,7 @@ class App extends Component {
       <div>
         <Router>
           <SearchBar sendData={this.getData}></SearchBar>
+          <div><p>{this.state.filteredarray}</p></div>
             <Header></Header>
             <div className="app-layout">
             <Route path="/topic/:series" component={props => <PodcastList {...props} /> } />

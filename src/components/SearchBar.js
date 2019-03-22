@@ -7,12 +7,11 @@ class SearchBar extends Component {
             filtered: ""
         }
     }
-
-   
-    demoMethod = () => {
-        this.props.sendData(this.state.filtered);
-      }
  
+    handleClick = event => {
+        event.preventDefault();
+        this.props.sendData(this.state.filtered)
+      }
 
     handleChange = (e)  =>  {
         e.preventDefault();
@@ -25,7 +24,7 @@ class SearchBar extends Component {
     return (
       <div>
         <input type="text" className="input" onChange={this.handleChange} placeholder="Search..."></input>
-        <button onClick={()=> this.props.sendData(this.state.filtered)}>Search</button>
+        <button onClick={this.handleClick}>Search</button>
       </div>
     );
   }
