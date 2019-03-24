@@ -35,11 +35,6 @@ class PodcastList extends Component {
     })}
   
   componentDidUpdate =(prevProps)=>{
-    console.log(this.props.filteredarray);
-    if (this.state.episodes[0] === undefined) {
-      const setnew = this.searchEpisodes()
-    this.setState({ newarray: setnew }); 
-  console.log(this.state.newarray) }
     if (this.props.match.params.series !== prevProps.match.params.series) {
       this.componentDidMount();
       
@@ -55,12 +50,6 @@ class PodcastList extends Component {
   // }
 
   render() {
-
-    // let searchEpisodes = () => {
-    //   return this.state.episodes.filter((episode) => {
-    //     return episode.title_original.toLowerCase().match(this.props.filteredarray.toLowerCase());
-    //   })}
-
     const { episodes, newarray } = this.state;
     if (episodes[0] === undefined) {
       return (<div>Fetching Podcast List, please wait..</div>)
