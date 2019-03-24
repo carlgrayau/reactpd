@@ -29,7 +29,10 @@ class PodcastList extends Component {
         
   }
 
-  
+  searchEpisodes = () => {
+    return this.state.episodes.filter((episode) => {
+      return episode.title_original.toLowerCase().match(this.props.filteredarray.toLowerCase());
+    })}
   
   componentDidUpdate =(prevProps)=>{
     console.log(this.props.filteredarray);
@@ -62,14 +65,11 @@ class PodcastList extends Component {
     if (episodes[0] === undefined) {
       return (<div>Fetching Podcast List, please wait..</div>)
     } else {
-      let searchEpisodes = () => {
-        return this.state.episodes.filter((episode) => {
-          return episode.title_original.toLowerCase().match(this.props.filteredarray.toLowerCase());
-        })}
+      
 
       return (<div>
         <div>{this.props.filteredarray}</div>
-        { searchEpisodes().map((episode, index) => ( <Item {...this.props} key={index} episode={episode} /> ))}
+        { this.searchEpisodes().map((episode, index) => ( <Item {...this.props} key={index} episode={episode} /> ))}
       </div>
       )
     }
