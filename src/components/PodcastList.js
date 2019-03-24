@@ -3,11 +3,17 @@ import axios from 'axios';
 import Item from './Item';
 
 class PodcastList extends Component {
-  state = {
-      episodes: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      episodes: [],
+      newarray: [],
+      filtered: ""
     };
+  }
 
   componentDidMount() {
+    
     const CLIENT_ID_LISTEN = process.env.REACT_APP_CLIENT_ID_LISTEN;
     axios
         .get(
@@ -20,22 +26,50 @@ class PodcastList extends Component {
         .then(response => { this.setState({ episodes: response.data.results })
         });
         
+        
   }
 
-  componentDidUpdate(prevProps) {
+  
+  
+  componentDidUpdate =(prevProps)=>{
+    console.log(this.props.filteredarray);
+    if (this.state.episodes[0] === undefined) {
+      const setnew = this.searchEpisodes()
+    this.setState({ newarray: setnew }); 
+  console.log(this.state.newarray) }
     if (this.props.match.params.series !== prevProps.match.params.series) {
-      this.componentDidMount()
+      this.componentDidMount();
+      
+      
     }
   }
 
+  // componentWillReceiveProps = (nextProps) => {
+  //   this.setState({
+  //     newarray: this.searchEpisodes()
+  //   });
+  //   console.log(nextProps);
+  // }
+
   render() {
-    const { episodes } = this.state;
+
+    // let searchEpisodes = () => {
+    //   return this.state.episodes.filter((episode) => {
+    //     return episode.title_original.toLowerCase().match(this.props.filteredarray.toLowerCase());
+    //   })}
+
+    const { episodes, newarray } = this.state;
     if (episodes[0] === undefined) {
       return (<div>Fetching Podcast List, please wait..</div>)
     } else {
-      return (<div>
+      let searchEpisodes = () => {
+        return this.state.episodes.filter((episode) => {
+          return episode.title_original.toLowerCase().match(this.props.filteredarray.toLowerCase());
+        })}
 
-        { episodes.map((episode, index) => ( <Item {...this.props} key={index} episode={episode} /> ))}
+      return (<div>
+        <div>{this.props.filteredarray}</div>
+        { searchEpisodes().map((episode, index) => ( <Item {...this.props} key={index} episode={episode} /> ))}
       </div>
       )
     }

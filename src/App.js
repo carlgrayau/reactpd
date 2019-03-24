@@ -14,12 +14,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        filteredarray: ""
+        filteredarray: "",
+        testprop: "testing123"
+
     }
 }
-// componentDidUpdate = () => {
-//   console.log(this.state.filteredarray)
-// }  
 
   getData = (val) => {
     this.setState({filteredarray: val});
@@ -33,7 +32,7 @@ class App extends Component {
           <div><p>{this.state.filteredarray}</p></div>
             <Header></Header>
             <div className="app-layout">
-            <Route path="/topic/:series" component={props => <PodcastList {...props} /> } />
+            <Route path="/topic/:series" component={props => <PodcastList filteredarray={this.state.filteredarray}{...props} /> } />
             <Route path="/topic/:series/:id" component={props => <PodcastPlayer {...props} /> } />
             
             </div>
