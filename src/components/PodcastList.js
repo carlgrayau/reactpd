@@ -9,9 +9,9 @@ class PodcastList extends Component {
       episodes: []
     };
   }
-
+  _isMounted = false;
   componentDidMount() {
-    
+    this._isMounted = true;
     const CLIENT_ID_LISTEN = process.env.REACT_APP_CLIENT_ID_LISTEN;
     axios
         .get(
@@ -21,7 +21,7 @@ class PodcastList extends Component {
             }
           }
         )
-        .then(response => { this.setState({ episodes: response.data.results })
+        .then(response => { if (this._isMounted) {this.setState({ episodes: response.data.results }) }
         });
         
         
@@ -35,9 +35,11 @@ class PodcastList extends Component {
   componentDidUpdate =(prevProps)=>{
     if (this.props.match.params.series !== prevProps.match.params.series) {
       this.componentDidMount();
-      
-      
     }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   // componentWillReceiveProps = (nextProps) => {
@@ -48,7 +50,7 @@ class PodcastList extends Component {
   // }
 
   render() {
-    const { episodes, newarray } = this.state;
+    const { episodes } = this.state;
     if (episodes[0] === undefined) {
       return (<div>Fetching Podcast List, please wait..</div>)
     } else {
