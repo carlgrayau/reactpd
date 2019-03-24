@@ -6,9 +6,7 @@ class PodcastList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      episodes: [],
-      newarray: [],
-      filtered: ""
+      episodes: []
     };
   }
 
