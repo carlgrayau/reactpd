@@ -27,6 +27,7 @@ class App extends Component {
   render() {
     return (
       <div>
+
         <Router>
           <SearchBar sendData={this.getData}></SearchBar>
           <div><p>{this.state.filteredarray}</p></div>
