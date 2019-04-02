@@ -14,12 +14,12 @@ class PodcastPlayer extends Component {
           
         const result = this.props.filteredarray1.find(
             findid => findid.id === `${this.props.match.params.id}`);
-            this.setState({ results: result });
+            this.setState({ results: result});
             console.log(this.state.results);
       }
 
   render() {
-   setTimeout(() => {console.log(this.props.filteredarray1)}, 4000)
+  //  setTimeout(() => {console.log(this.props.filteredarray1)}, 4000)
     
     
     if (this.state.results !== undefined ) {
