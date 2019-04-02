@@ -21,20 +21,25 @@ class PodcastList extends Component {
             }
           }
         )
-        .then(response => { if (this._isMounted) {this.setState({ episodes: response.data.results }) }
+        .then(response => { if (this._isMounted) { this.setState({ episodes: response.data.results }); this.props.sendEpisodes(this.state.episodes); }
         });
         
         
   }
 
   searchEpisodes = () => {
+    
     return this.state.episodes.filter((episode) => {
       return episode.title_original.toLowerCase().match(this.props.filteredarray.toLowerCase());
     })}
   
   componentDidUpdate =(prevProps)=>{
+   
     if (this.props.match.params.series !== prevProps.match.params.series) {
       this.componentDidMount();
+      
+      
+      
     }
   }
 
@@ -50,6 +55,7 @@ class PodcastList extends Component {
   // }
 
   render() {
+    
     const { episodes } = this.state;
     if (episodes[0] === undefined) {
       return (<div>Fetching Podcast List, please wait..</div>)

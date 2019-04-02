@@ -15,27 +15,34 @@ class App extends Component {
     super(props);
     this.state = {
         filteredarray: "",
-        testprop: "testing123"
+        testprop: "testing123",
+        episodes: []
 
     }
+  
 }
+
 
   getData = (val) => {
     this.setState({filteredarray: val});
 }
 
+getEpisodes = (val) => {
+  this.setState({episodes: val})
+}
+
   render() {
     return (
       <div>
-
         <Router>
           <SearchBar sendData={this.getData}></SearchBar>
-          <div><p>{this.state.filteredarray}</p></div>
             <Header></Header>
             <div className="app-layout">
-            <Route path="/topic/:series" component={props => <PodcastList filteredarray={this.state.filteredarray}{...props} /> } />
-            <Route path="/topic/:series/:id" component={props => <PodcastPlayer {...props} /> } />
-            
+            <Route path="/topic/:series" render={(props) => (<PodcastList {...props} filteredarray={this.state.filteredarray} sendEpisodes={this.getEpisodes} /> )} />
+            <Route path="/topic/:series/:id" 
+                   render={(props) => ( <PodcastPlayer {...props} filteredarray1={this.state.episodes} /> 
+                    )} 
+            />
             </div>
         </Router>
       </div>
